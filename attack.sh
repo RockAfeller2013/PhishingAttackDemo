@@ -39,6 +39,7 @@ Copy maro powershell_attack.txt into Word attachment.
 sudo mv powershell_attack.txt /home/powershell_attack.txt
 scp kali@10.3.99.1:/home/powershell.txt 
 
+---------
 
 sudo msfconsole -r unicorn.rc
 ---------
