@@ -1,6 +1,9 @@
 ---------
 cscript "C:\Program Files\Microsoft Office\Office16\ospp.vbs"  /dstatus
 ---------
+Might have to use Windows XP 
+https://blog.danielburrowes.com/2024/01/windows-xp-on-proxmox.html
+---------
 Setup Microsoft Word
 
 - Enable Developer Option: File > Options > Customize Ribbon, then on the right, Developer under Main Tabs
