@@ -1,0 +1,3 @@
+cat powershell_attack.txt | xsel --clipboard
+
+cat powershell_attack.txt | xsel --clipboard
