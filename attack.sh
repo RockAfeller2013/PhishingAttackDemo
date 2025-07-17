@@ -23,11 +23,9 @@ sudo msfconsole -r unicorn.rc
 
 ---------
 Copy maro powershell_attack.txt into Word attachment. 
-Open Word / Developer / Macros / Create / Auto_Open / insert payload .
 
-The Developer tab in Word is hidden by default and needs to be enabled in the Word options. 
-To show it, navigate to File > Options > Customize Ribbon, then check the box next to Developer under Main Tabs. 
-Click OK to save the changes and the Developer tab will appear on the ribbon
+Enable Developer Option: File > Options > Customize Ribbon, then on the right, Developer under Main Tabs
+Open Word / Developer / Macros / Create / Auto_Open / insert payload .
 
 https://www.techtoolsforwriters.com/how-to-add-a-macro-to-word/
 ---------
