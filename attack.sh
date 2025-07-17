@@ -1,4 +1,6 @@
 ---------
+Windows 10 Version 22H2 - Build 19045.2006
+
 cscript "C:\Program Files\Microsoft Office\Office16\ospp.vbs"  /dstatus
 ---------
 Might have to use Windows XP 
