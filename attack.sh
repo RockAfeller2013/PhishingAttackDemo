@@ -17,8 +17,10 @@ Setup Microsoft Word
 -------
 Create a Email MSG shortcut for the following;
 
-"C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "No Account" "C:\Users\domainuser\Desktop\email.msg"
-"C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "CS2"
+"C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "No Account" "C:\Users\domainadmin\Desktop\email.msg"
+"C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "cbcuser1" "C:\Users\domainadmin\Desktop\email.msg"
+start "" "C:\Users\domainadmin\Desktop\email.msg"
+
 
 ---------
 [UPDATE METASPL0IT]
