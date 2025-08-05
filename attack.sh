@@ -15,6 +15,10 @@ Setup Microsoft Word
 - Save as a Word Macro-Enabled Document
 - Create a Email and save it as a MSG file with attachement 
 -------
+This is another good write up
+https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/2%20-%20Attack%20Simulation%20%26%20Threat%20Emulation.md
+-------
+
 Create a Email MSG shortcut for the following;
 
 "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" /PIM "No Account" "C:\Users\domainadmin\Desktop\email.msg"
